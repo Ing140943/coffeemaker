@@ -1,6 +1,5 @@
-CoffeeMaker Releated Document
-[CoffeeMaker Test Document](https://github.com/Ing140943/coffeemaker/wiki)
-=====================================        
+# CoffeeMaker Releated Document       
+* [CoffeeMaker Test Document](https://github.com/Ing140943/coffeemaker/wiki)    
 
 CoffeeMaker JUnit - Buggy Version
 =================================  
