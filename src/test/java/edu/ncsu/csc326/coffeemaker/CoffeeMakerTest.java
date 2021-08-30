@@ -23,12 +23,6 @@ import org.junit.Test;
 
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
-
-import edu.ncsu.csc326.coffeemaker.Main.*;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import static org.junit.Assert.*;
 
 /**
@@ -164,12 +158,29 @@ public class CoffeeMakerTest {
 	@Test
 	public void testDeleteExistRecipe() {
 		coffeeMaker.addRecipe(recipe1);
+		coffeeMaker.deleteRecipe(0);
+		assertNotEquals(recipe1, coffeeMaker.getRecipes()[0]);
+		assertNull(coffeeMaker.getRecipes()[0]);
+	}
+
+	/**
+	 * Test delete recipe from the recipe book.
+	 * Then that recipe should not exist in the recipe book even we remove many recipes.
+	 */
+	@Test
+	public void testDeleteExistManyRecipes() {
+		coffeeMaker.addRecipe(recipe1);
 		coffeeMaker.addRecipe(recipe2);
 		coffeeMaker.addRecipe(recipe3);
 		coffeeMaker.deleteRecipe(0);
+		coffeeMaker.deleteRecipe(1);
+		coffeeMaker.deleteRecipe(2);
 		assertNotEquals(recipe1, coffeeMaker.getRecipes()[0]);
-		assertEquals(recipe2, coffeeMaker.getRecipes()[1]);
-		assertEquals(recipe3, coffeeMaker.getRecipes()[2]);
+		assertNotEquals(recipe1, coffeeMaker.getRecipes()[1]);
+		assertNotEquals(recipe1, coffeeMaker.getRecipes()[2]);
+		assertNull(coffeeMaker.getRecipes()[0]);
+		assertNull(coffeeMaker.getRecipes()[1]);
+		assertNull(coffeeMaker.getRecipes()[2]);
 	}
 
 	/**
@@ -421,5 +432,7 @@ public class CoffeeMakerTest {
 		int change = coffeeMaker.makeCoffee(0,money);
 		assertEquals(change, money);
 	}
+
+
 
 }
