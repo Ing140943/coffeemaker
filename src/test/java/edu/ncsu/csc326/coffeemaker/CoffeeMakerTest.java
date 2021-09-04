@@ -245,166 +245,6 @@ public class CoffeeMakerTest {
 	}
 
 	/**
-	 * Given a coffee maker with the default inventory
-	 * When we add inventory with well-formed quantities
-	 * Then we do not get an exception trying to read the inventory quantities.
-	 *
-	 * @throws InventoryException  if there was an error parsing the quanity
-	 * 		to a positive integer.
-	 */
-	@Test
-	public void testAddInventoryWithPositiveInteger() throws InventoryException {
-		coffeeMaker.addInventory("0","0","0","0");
-		coffeeMaker.addInventory("5","5","5","5");
-		coffeeMaker.addInventory("0","1","1","1");
-		coffeeMaker.addInventory("1","0","1","1");
-		coffeeMaker.addInventory("1","1","5","5");
-		coffeeMaker.addInventory("5","5","5","5");
-	}
-
-	/**
-	 * Test to add negative value for coffee in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNegativeIntegerCoffee() throws InventoryException {
-		coffeeMaker.addInventory("-5", "1", "1", "1");
-		coffeeMaker.addInventory("-10", "1", "1", "1");
-		coffeeMaker.addInventory("-100", "1", "1", "1");
-		coffeeMaker.addInventory("-1", "0", "0", "0");
-		coffeeMaker.addInventory("-500", "0", "0", "0");
-	}
-
-	/**
-	 * Test to add negative value for milk in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNegativeIntegerMilk() throws InventoryException {
-		coffeeMaker.addInventory("1", "-5", "1", "1");
-		coffeeMaker.addInventory("1", "-10", "1", "1");
-		coffeeMaker.addInventory("1", "-100", "1", "1");
-		coffeeMaker.addInventory("1", "-1", "0", "0");
-		coffeeMaker.addInventory("1", "-500", "0", "0");
-	}
-
-	/**
-	 * Test to add negative value for sugar in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNegativeIntegerSugar() throws InventoryException {
-		coffeeMaker.addInventory("1", "1", "-5", "1");
-		coffeeMaker.addInventory("1", "1", "-10", "1");
-		coffeeMaker.addInventory("1", "1", "-100", "1");
-		coffeeMaker.addInventory("1", "1", "-1", "0");
-		coffeeMaker.addInventory("1", "1", "-500", "0");
-	}
-
-	/**
-	 * Test to add negative value for sugar in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNegativeIntegerChocolate() throws InventoryException {
-		coffeeMaker.addInventory("1", "1", "1", "-5");
-		coffeeMaker.addInventory("1", "1", "1", "-10");
-		coffeeMaker.addInventory("1", "1", "1", "-100");
-		coffeeMaker.addInventory("1", "1", "0", "-1");
-		coffeeMaker.addInventory("1", "1", "0", "-500");
-	}
-
-	/**
-	 * Test to add non-number value for coffee in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNonNumCoffee() throws InventoryException {
-		coffeeMaker.addInventory("abc", "1", "1", "1");
-		coffeeMaker.addInventory("Java", "1", "1", "1");
-		coffeeMaker.addInventory("L", "1", "1", "1");
-		coffeeMaker.addInventory("U", "0", "0", "0");
-		coffeeMaker.addInventory("V", "0", "0", "0");
-	}
-
-	/**
-	 * Test to add non-number value for milk in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNonNumMilk() throws InventoryException {
-		coffeeMaker.addInventory("1", "abc", "1", "1");
-		coffeeMaker.addInventory("1", "Java", "1", "1");
-		coffeeMaker.addInventory("1", "L", "1", "1");
-		coffeeMaker.addInventory("0", "U", "0", "0");
-		coffeeMaker.addInventory("0", "V", "0", "0");
-	}
-
-	/**
-	 * Test to add non-number value for sugar in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNonNumSugar() throws InventoryException {
-		coffeeMaker.addInventory("1", "1", "abc", "1");
-		coffeeMaker.addInventory("1", "1", "Java", "1");
-		coffeeMaker.addInventory("1", "1", "L", "1");
-		coffeeMaker.addInventory("0", "0", "U", "0");
-		coffeeMaker.addInventory("0", "0", "V", "0");
-	}
-
-	/**
-	 * Test to add non-number value for sugar in inventory.
-	 * Then we get an inventory exception.
-	 */
-	@Test(expected = InventoryException.class)
-	public void testAddNonChocolate() throws InventoryException {
-		coffeeMaker.addInventory("1", "1", "1", "abc");
-		coffeeMaker.addInventory("1", "1", "1", "Java");
-		coffeeMaker.addInventory("1", "1", "1", "L");
-		coffeeMaker.addInventory("0", "0", "0", "U");
-		coffeeMaker.addInventory("0", "0", "0", "V");
-	}
-
-	/**
-	 * Test to check the number of each type in inventory
-	 * Then we will get the correct amount of ingredients.
-	 */
-	@Test
-	public void testCheckInventory() throws InventoryException {
-		assertEquals("Coffee: 15\nMilk: 15\nSugar: 15\nChocolate: 15\n",coffeeMaker.checkInventory());
-		coffeeMaker.addInventory("5","5","0","5");
-		assertEquals("Coffee: 20\nMilk: 20\nSugar: 15\nChocolate: 20\n",coffeeMaker.checkInventory());
-
-	}
-
-	/**
-	 * When we make coffee we should have sufficient resource
-	 * Then the ingredients should decrease.
-	 */
-	@Test
-	public void testMakeCoffeeWithSufficientResource() throws InventoryException {
-		Inventory demo = new Inventory();
-		assertTrue(demo.useIngredients(recipe1));
-		assertEquals("Coffee: 12\nMilk: 14\nSugar: 14\nChocolate: 15\n",coffeeMaker.checkInventory());
-		coffeeMaker.addInventory("5","5","0","5");
-		assertTrue(demo.useIngredients(recipe2));
-		assertEquals("Coffee: 14\nMilk: 18\nSugar: 13\nChocolate: 0\n",coffeeMaker.checkInventory());
-	}
-
-	/**
-	 * When we make coffee we should have sufficient resource, but we don't.
-	 * Then we can't make the coffee.
-	 */
-	@Test
-	public void testMakeCoffeeWithInsufficientResource() {
-		Inventory demo = new Inventory();
-		assertTrue(demo.useIngredients(recipe1));
-		assertFalse(demo.useIngredients(recipe2));
-		assertTrue(demo.useIngredients(recipe3));
-	}
-
-	/**
 	 * Given a coffee maker with one valid recipe
 	 * When we make coffee, selecting the valid recipe and paying more than
 	 * 		the coffee costs
@@ -433,6 +273,28 @@ public class CoffeeMakerTest {
 		assertEquals(change, money);
 	}
 
+	/**
+	 * Given a coffee maker with one invalid recipe
+	 * When we make coffee, selecting the invalid recipe
+	 * Then we shouldn't get the coffee and return their money.
+	 */
+	@Test
+	public void testMakeCoffeeWithNoneRecipe() {
+		int money = 10;
+		int change = coffeeMaker.makeCoffee(0,money);
+		assertEquals(change, money);
+	}
 
-
+	/**
+	 * Given a coffee maker with one valid recipe
+	 * When we make coffee, selecting the valid recipe
+	 * Then we shouldn't get the coffee because we don't have enough ingredients and return their money.
+	 */
+	@Test
+	public void testMakeCoffeeWithNotEnoughIngredients() {
+		coffeeMaker.addRecipe(recipe2);
+		int money = 100;
+		int change = coffeeMaker.makeCoffee(0,money);
+		assertEquals(change, money);
+	}
 }
