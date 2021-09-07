@@ -276,7 +276,7 @@ public class InventoryTest {
         factory.setCoffee(10);
         assertEquals(10, factory.getCoffee());
         factory.setCoffee(-10);
-        assertEquals(15, factory.getCoffee());
+        assertEquals(10, factory.getCoffee());
     }
 
     /**
@@ -289,7 +289,7 @@ public class InventoryTest {
         factory.setMilk(10);
         assertEquals(10, factory.getMilk());
         factory.setMilk(-10);
-        assertEquals(15, factory.getMilk());
+        assertEquals(10, factory.getMilk());
     }
 
     /**
@@ -302,7 +302,7 @@ public class InventoryTest {
         factory.setSugar(10);
         assertEquals(10, factory.getSugar());
         factory.setSugar(-10);
-        assertEquals(15, factory.getSugar());
+        assertEquals(10, factory.getSugar());
     }
 
     /**
@@ -315,7 +315,7 @@ public class InventoryTest {
         factory.setChocolate(10);
         assertEquals(10, factory.getChocolate());
         factory.setChocolate(-10);
-        assertEquals(15, factory.getChocolate());
+        assertEquals(10, factory.getChocolate());
     }
 
 }
