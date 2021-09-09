@@ -29,12 +29,12 @@ public class CoffeeMaker {
         *
         */
 	public CoffeeMaker() {
-	    recipeBook = new RecipeBook();
-		inventory = new Inventory();
+	    this.recipeBook = new RecipeBook();
+		this.inventory = new Inventory();
 	}
 
 	/**
-	 * New constructor for the coffee maker with parameters
+	 * Initialze a new CoffeeMaker using provided recipeBook and inventory.
 	 */
 	public CoffeeMaker(RecipeBook recipeBook, Inventory inventory){
 		this.recipeBook = recipeBook;
