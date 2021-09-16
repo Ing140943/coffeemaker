@@ -238,7 +238,6 @@ public class CoffeeMakerTest {
 		coffeeMaker.addRecipe(recipe3);
 		assertEquals(25, coffeeMaker.makeCoffee(0, 75));
 		assertEquals(75, coffeeMaker.makeCoffee(1, 175));
-
 	}
 
 	/**
@@ -279,4 +278,5 @@ public class CoffeeMakerTest {
 		int change = coffeeMaker.makeCoffee(0,money);
 		assertEquals(change, money);
 	}
+
 }
